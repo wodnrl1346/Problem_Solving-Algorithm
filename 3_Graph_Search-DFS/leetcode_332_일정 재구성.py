@@ -1,32 +1,17 @@
-'''모든 조합 탐색'''
+from collections import defaultdict
 
 class Solution:
-    def letterCombinations(self, digits: str) -> List[str]:
-        graph = {
-            "2": "abc",
-            "3": "def",
-            "4": "ghi",
-            "5": "jkl",
-            "6": "mno",
-            "7": "pqrs",
-            "8": "tuv",
-            "9": "wxyz"
-        }
+    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        graph = defaultdict(list)
+        for start, end in sorted(tickets):
+            graph[start].append(end)
 
-        answer = []
+        result = []
+        def dfs(a):
+            while graph[a]:
+                dfs(graph[a].pop(0))
+            result.append(a)
+        
+        dfs("JFK")
 
-        # 예외처리
-        if not digits:
-            return []
-
-        def dfs(index, path):
-            if len(path) == len(digits):
-                answer.append(path)
-
-            for i in range(index, len(digits)):
-                for j in graph[digits[i]]:
-                    dfs(i+1, path+j)
-
-        dfs(0, "")
-
-        return answer
+        return result[::-1]
