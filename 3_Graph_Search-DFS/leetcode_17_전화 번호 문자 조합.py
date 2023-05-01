@@ -1,35 +1,32 @@
-import sys
-sys.setrecursionlimit(10**5)
+'''모든 조합 탐색'''
 
-# 2에서 9까지 숫자가 주어졌을 때, 전화번호로 조합 가능한 모든 문자 출력
-dic = {
-    '2': "abc",
-    '3': "def",
-    '4': "ghi",
-    '5': "jkl",
-    '6': "mno",
-    '7': "pqrs",
-    '8': "tuv",
-    '9': "wxyz"
-}
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        graph = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
 
-digits = input()
+        answer = []
 
-result = []
-def dfs(index, path):
+        # 예외처리
+        if not digits:
+            return []
 
-    if len(path) == len(digits):
-        result.append(path)
-        return
+        def dfs(index, path):
+            if len(path) == len(digits):
+                answer.append(path)
 
-    for i in range(index, len(digits)):    # 0, 1
-        for j in dic[digits[i]]:    # 'abc', 'def'
-            dfs(i+1, path+j)
+            for i in range(index, len(digits)):
+                for j in graph[digits[i]]:
+                    dfs(i+1, path+j)
 
-# 예외 처리
-if not digits:  # 아무것도 입력되지 않으면
-    print([])
+        dfs(0, "")
 
-else:
-    dfs(0, "")
-    print(result)
+        return answer
