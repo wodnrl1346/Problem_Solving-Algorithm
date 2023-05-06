@@ -12,9 +12,8 @@ int main(){
     cnt += month[i];
   }
 
-  cnt += (y-1);
-  index = (cnt % 7);
+  y += cnt;
 
-  cout << week[1+index] << endl;
+  cout << week[y % 7] << '\n';
   return 0;
 }
