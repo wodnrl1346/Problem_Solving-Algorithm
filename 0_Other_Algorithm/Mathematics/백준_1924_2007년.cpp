@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+  int x, y, cnt = 0, index;
+  cin >> x >> y;
+
+  const char* week[7] = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
+  int month[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+  for (int i = 1; i<x; i++){
+    cnt += month[i];
+  }
+
+  cnt += (y-1);
+  index = (cnt % 7);
+
+  cout << week[1+index] << endl;
+  return 0;
+}
