@@ -1,4 +1,4 @@
-//1. Array
+//1. Array + sorting -> indexing
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -45,7 +45,7 @@ int main(){
   cout << v[0] << " " << v[n-1];
 }
 
-//3. Vector + max, min function
+//3. vector + max, min function
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -73,7 +73,7 @@ int main(){
 
 }
 
-//4. Vector + if문
+//4. vector + if문
 #include <iostream>
 #include <vector>
 using namespace std;
